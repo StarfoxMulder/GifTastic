@@ -7,18 +7,17 @@ $(document).ready(function() {
     	'mothman',
     ];
 
-	popCrypButtons()
+	popCrypButtons();
 
 	$('.btn-primary').click(function() {
-		var newCryptid = $('#search').val();
+		var newCryptid = $('#search').val().trim();
 		topics.push(newCryptid);
-		popCrypButtons()
+		popCrypButtons();
 	});
 
 	$('.btn-secondary').click(function() {
-
-
 			console.log("anything?");
+
 			$('#gifContainer').empty();
 	        var cryptid = $(this).data('cryptid');
 	        console.log(cryptid);
@@ -74,11 +73,11 @@ $(document).ready(function() {
 			$(this).attr('data-state', 'playing');
 			$(this).attr('src', $(this).attr('data-animate'));
 		}
-		else if (state =! 'still') {
+		else if (state != 'still') {
+			console.log('bloop?');
 			$(this).attr('data-state', 'still');
 			$(this).attr('src', $(this).attr('data-still'));
 		}
-
 	}); //end img click handler
 
 });//end doc on load
