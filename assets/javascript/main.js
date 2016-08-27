@@ -4,18 +4,21 @@ $(document).ready(function() {
     	'yeti',
     	'chupacabra',
     	'greys',
-    	'mothman',
+    	'mothman'
     ];
 
 	popCrypButtons();
 
 	$('.btn-primary').click(function() {
 		var newCryptid = $('#search').val().trim();
+		console.log(topics);
 		topics.push(newCryptid);
+		console.log(topics);
 		popCrypButtons();
 	});
 
-	$('.btn-secondary').click(function() {
+	$('body').on('click', '.btn-secondary', function() {
+//	$('.btn-secondary').click(function() {
 			console.log("anything?");
 
 			$('#gifContainer').empty();
@@ -62,6 +65,8 @@ $(document).ready(function() {
 	    	var but = "<button type='button' class='btn btn-secondary' data-cryptid='"+topics[i]+"'>"+topics[i]+"</button>";
 	    	$('#gifButtons').append(but);
 	    };
+
+	    console.log(topics);
 	};
 
 	
@@ -81,3 +86,4 @@ $(document).ready(function() {
 	}); //end img click handler
 
 });//end doc on load
+
