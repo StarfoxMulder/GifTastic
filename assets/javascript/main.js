@@ -42,9 +42,10 @@ $(document).ready(function() {
 
 	                    var cryptidImage = $('<img>');
 	                    cryptidImage.attr('src', results[i].images.original_still.url);
-	                    cryptidImage.attr('state', 'still');
+	                    cryptidImage.attr('data-state', 'still');
 	                    cryptidImage.attr('data-animate', results[i].images.original.url);
 	                    cryptidImage.attr('data-still', results[i].images.original_still.url);
+	                    cryptidImage.attr('class', 'cryptidImg');
 
 	                    cryptidDiv.append(h2);
 	                    cryptidDiv.append(cryptidImage);
@@ -52,8 +53,8 @@ $(document).ready(function() {
 	                    $('#gifContainer').append(cryptidDiv);
 
 	                }
-         	   })
-    });
+         	   }) //end AJAX
+    });//end secondary btn click
 
     function popCrypButtons() {
     	$('#gifButtons').empty();
@@ -64,15 +65,20 @@ $(document).ready(function() {
 	    };
 	};
 
-	$('img').click(function(){
-		if($(this).attr('state') == 'still') {
-			$(this).attr('state') = 'playing';
+	
+	$('body').on('click', 'img', function(){
+		var state = $(this).attr('data-state');
+		console.log(state);
+
+		if (state == 'still') {
+			$(this).attr('data-state', 'playing');
 			$(this).attr('src', $(this).attr('data-animate'));
 		}
-		if($(this).attr('state') == 'playing') {
-			$(this).attr('state') = 'still';
+		else if (state =! 'still') {
+			$(this).attr('data-state', 'still');
 			$(this).attr('src', $(this).attr('data-still'));
 		}
 
-	});
-});
+	}); //end img click handler
+
+});//end doc on load
