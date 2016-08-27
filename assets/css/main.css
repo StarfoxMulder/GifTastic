@@ -1,3 +1,7 @@
+body {
+	background-color: #FEEEFF;
+}
+
 header {
 	background-image: url(../images/Yale-world-map3.jpg);
 	background-repeat: no-repeat;
@@ -20,6 +24,7 @@ header  h2 {
 	font-size: 200%;
 	margin-top: 10px;
 }
+
 
 label {
 	font-family: 'Bangers', cursive;
@@ -44,9 +49,15 @@ h3 {
 	color: #B52200;
 	text-align: center;
 	letter-spacing: 5px;
+	font-size: 125%;
 	margin: 10px 10px;
 }
 
 .btn-secondary:nth-child(1n+1) {
 	margin-left: 0px;
+}
+
+h2 {
+	font-family: 'Bangers', cursive;
+	text-align: center;
 }

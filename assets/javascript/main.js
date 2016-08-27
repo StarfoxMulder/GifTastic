@@ -1,7 +1,24 @@
 $(document).ready(function() {
+	var topics = [
+    	'sashquatch',
+    	'yeti',
+    	'chupacabra',
+    	'greys',
+    	'mothman',
+    ];
+
+	popCrypButtons()
+
+	$('.btn-primary').click(function() {
+		var newCryptid = $('#search').val();
+		topics.push(newCryptid);
+		popCrypButtons()
+
+	});
 
 	$('.btn-secondary').click(function() {
 		console.log("anything?");
+		$('#gifContainer').empty();
         var cryptid = $(this).data('cryptid');
         console.log(cryptid);
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + cryptid + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -30,22 +47,17 @@ $(document).ready(function() {
 
                     $('#gifContainer').append(cryptidDiv);
 
-                    topics.push(cryptid);
                 }
 
             })
     });
 
-    var topics = [
-    	'sashquatch',
-    	'yeti',
-    	'chupacabra',
-    	'greys',
-    	'mothman',
-    ];
+    function popCrypButtons() {
+    	$('#gifButtons').empty();
 
-    for(var i =0; i < topics.length; i++) {
-    	var but = "<button type='button' class='btn btn-secondary' data-cryptid='"+topics[i]+"'>"+topics[i]+"</button>";
-    	$('#gifButtons').append(but);
-    };
+	    for(var i =0; i < topics.length; i++) {
+	    	var but = "<button type='button' class='btn btn-secondary' data-cryptid='"+topics[i]+"'>"+topics[i]+"</button>";
+	    	$('#gifButtons').append(but);
+	    };
+	};
 });
