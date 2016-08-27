@@ -28,10 +28,25 @@ label {
 	margin-top: 20px;
 }
 
+.btn-primary {
+	margin-bottom: 5px;
+}
+
 h3 {
 	font-family: 'Bangers', cursive;
 	letter-spacing: 5px;
 	border: 1px, solid, #B52200;
 	border-radius: 25px;
+}
 
+.btn-secondary {
+	font-family: 'Creepster', cursive;
+	color: #B52200;
+	text-align: center;
+	letter-spacing: 5px;
+	margin: 10px 10px;
+}
+
+.btn-secondary:nth-child(1n+1) {
+	margin-left: 0px;
 }
