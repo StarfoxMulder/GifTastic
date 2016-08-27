@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	var topics = [
-    	'sashquatch',
+    	'sasquatch',
     	'yeti',
     	'chupacabra',
     	'greys',
@@ -13,43 +13,46 @@ $(document).ready(function() {
 		var newCryptid = $('#search').val();
 		topics.push(newCryptid);
 		popCrypButtons()
-
 	});
 
 	$('.btn-secondary').click(function() {
-		console.log("anything?");
-		$('#gifContainer').empty();
-        var cryptid = $(this).data('cryptid');
-        console.log(cryptid);
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + cryptid + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-        $.ajax({
-                url: queryURL,
-                method: 'GET'
-            })
-            .done(function(response) {
-                console.log(queryURL);
-                console.log(response);
 
-                var results = response.data;
+			console.log("anything?");
+			$('#gifContainer').empty();
+	        var cryptid = $(this).data('cryptid');
+	        console.log(cryptid);
+	        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + cryptid + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-                for (var i = 0; i < results.length; i++) {
+	        $.ajax({
+	                url: queryURL,
+	                method: 'GET'
+	            })
+	            .done(function(response) {
+	                console.log(queryURL);
+	                console.log(response);
 
-                    var cryptidDiv = $('<div>');
+	                var results = response.data;
 
-                    var h2 = $('<h2>').text("Rating: " + results[i].rating);
+	                for (var i = 0; i < results.length; i++) {
 
-                    var cryptidImage = $('<img>');
-                    cryptidImage.attr('src', results[i].images.fixed_height.url);
+	                    var cryptidDiv = $('<div>');
 
-                    cryptidDiv.append(h2);
-                    cryptidDiv.append(cryptidImage);
+	                    var h2 = $('<h2>').text("Rating: " + results[i].rating);
 
-                    $('#gifContainer').append(cryptidDiv);
+	                    var cryptidImage = $('<img>');
+	                    cryptidImage.attr('src', results[i].images.original_still.url);
+	                    cryptidImage.attr('state', 'still');
+	                    cryptidImage.attr('data-animate', results[i].images.original.url);
+	                    cryptidImage.attr('data-still', results[i].images.original_still.url);
 
-                }
+	                    cryptidDiv.append(h2);
+	                    cryptidDiv.append(cryptidImage);
 
-            })
+	                    $('#gifContainer').append(cryptidDiv);
+
+	                }
+         	   })
     });
 
     function popCrypButtons() {
@@ -60,4 +63,16 @@ $(document).ready(function() {
 	    	$('#gifButtons').append(but);
 	    };
 	};
+
+	$('img').click(function(){
+		if($(this).attr('state') == 'still') {
+			$(this).attr('state') = 'playing';
+			$(this).attr('src', $(this).attr('data-animate'));
+		}
+		if($(this).attr('state') == 'playing') {
+			$(this).attr('state') = 'still';
+			$(this).attr('src', $(this).attr('data-still'));
+		}
+
+	});
 });
