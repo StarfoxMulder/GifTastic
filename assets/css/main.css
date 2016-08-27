@@ -1,11 +1,37 @@
 header {
-	font-family: 'Bangers', cursive;
-	background-image: url(../images/Yale-world-map2.jpg);
+	background-image: url(../images/Yale-world-map3.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
+	height: 178px;
 }
 
 h1 {
 	font-family: 'Creepster', cursive;
-	color: ;
+	color: #B52200;
+	text-align: center;
+	font-size: 550%;
+	letter-spacing: 35px;
+	margin-top: 7px;
+}
+
+header  h2 {
+	font-family: 'Bangers', cursive;
+	text-align: center;
+	font-size: 200%;
+	margin-top: 10px;
+}
+
+label {
+	font-family: 'Bangers', cursive;
+	letter-spacing: 8px;
+	font-size: 150%;
+	margin-top: 20px;
+}
+
+h3 {
+	font-family: 'Bangers', cursive;
+	letter-spacing: 5px;
+	border: 1px, solid, #B52200;
+	border-radius: 25px;
+
 }
