@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title>RPS Arena!</title>
+
+	<link rel="stylesheet" href="assets/css/reset.css">
+	
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Days+One|Hammersmith+One|Righteous" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+	<script src="assets/javascript/logic.js"></script>
+
+
+</head>
+
+<body class="container-fluid">
+
+	<header class="row">
+			<div class="col-xs-10 col-xs-offset-1">
+				<p id="title">RPS Arena</p>
+			</div>
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2">
+				<p id="tagline">ROCK PAPER SCISSORS SHOOTOUT!</p>
+			</div>
+		</div>
+	</header>
+
+	<main class="row">
+		<div class="row show" id="preGameDiv">
+			<div class="col-xs-10 col-xs-offset-1">
+				<p id="startPrompt">WELCOME!  TO BEGIN, GIVE YOURSELF A NAME</p><p id="errorMsg"></p>
+				<input type="text" id="nameInput"><button type="button" class="btn btn-success" id="playerNameSubmit">SUBMIT</button>
+			</div>
+		</div>
+
+		<div class="row hide" id="liveGameDiv">
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1">
+					<p id="instructions">HIT THE <span>R</span> <span>P</span> OR <span>S</span> KEYS TO CHOOSE YOUR ENEMY'S DESTROYER</p>
+				</div>
+			</div>
+			<div class="row" id="currentRoundRow">
+				<div class="col-xs-4 col-xs-offset-4">
+					<p id="currentRound">CURRENT ROUND</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 col-xs-offset-4">
+					<p id="opOption">X</p>
+				</div>
+				<div class="col-xs-2">
+					<p id="yourOption">Y</p>
+				</div>
+			</div>
+
+			<div class="row" id="agStats">
+				<div class="col-xs-8 col-xs-offset-2">
+					<div class="row">
+						<div class="col-xs-5">
+							<p id="player1Name">Player 1</p>
+						</div>
+						<div class="col-xs-5 col-xs-offset-2">
+							<p id="player2Name">Player 2</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<p id="player1TotalWins"></p>
+						</div>
+						<div class="col-xs-2">
+						WINS
+						</div>
+						<div class="col-xs-5">
+							<p id="player2TotalWins"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<p id="player1TotalLoses"></p>
+						</div>
+						<div class="col-xs-2">
+						LOSES
+						</div>
+						<div class="col-xs-5">
+							<p id="player2TotalLoses"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">
+							<p id="playerDraws"></p>
+						</div>
+						<div class="col-xs-2">
+						DRAWS
+						</div>
+						<div class="col-xs-5">
+							<p id="playerDraws"></p>
+						</div>
+					</div>
+				</div>
+			</div><!-- end agStats ontainer -->
+			<div class="row">
+				<div class="col-xs-4 col-xs-offset-4">
+					<button type="button" class="btn btn-danger" id="quitButton">QUIT</button>
+				</div>
+			</div>
+		</div><!-- end liveGameDiv container -->
+	</main>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+body {
+	background-color: #9DC7CB;
+}
+
+header {
+	background-color: #5DCB15;
+	color: #224B08;
+	font-family: 'Righteous', cursive;
+	text-align: center;
+}
+
+#title {
+	font-size: 80px;
+	letter-spacing: 5px;
+}
+
+#tagline {
+	color: #324B22;
+	font-family: 'Hammersmith One', sans-serif;
+	text-align: center;
+	font-size: 150%;
+	letter-spacing: 3px;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+#preGameDiv {
+	margin-top: 7%;
+	display: none;
+	margin-bottom: 7%;
+	text-align: center;
+}
+
+input {
+	width: 90%;
+	height: 25px;
+	font-family: 'Hammersmith One', sans-serif;
+	font-size: 150%;
+	text-align: center;
+}
+
+#playerNameSubmit {
+	margin-top: 7%;
+}
+
+#errorMsg {
+	color: #982A00;
+	font-family: 'Days One', sans-serif;
+	font-size: 200%;
+	text-align: center;
+}
+
+#liveGameDiv {
+	display: block;
+}
+
+#instructions {
+	font-family: 'Days One', sans-serif;
+	margin-top: 15%;
+	text-align: center;
+}
+
+span {
+	font-size: 200%;
+}
+
+main {
+	font-family: 'Days One', sans-serif;
+	background-color: #224B08;
+	color: #9DC7CB;
+}
+
+#currentRoundRow {
+	margin-top: 7%;
+	text-align: center;
+	letter-spacing: 3px;
+}
+
+#opOption {
+	text-align: center;
+	font-size: 250%;
+}
+
+#yourOption {
+	text-align: center;
+	font-size: 250%;
+}
+
+#agStats {
+	margin-top: 7%;
+	text-align: center;
+}
