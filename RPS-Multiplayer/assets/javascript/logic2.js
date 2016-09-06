@@ -3,6 +3,7 @@ $(document).ready(function(){
 // Create an array that lists out all of the options
 var options = ['r','p','s'];
 var players = 0;
+var playerId = ""; //Can be set to either "Player 1" or "Player 2"
 var player1Name = "";
 var player2Name = "";
 var player1TotalWins = 0;
@@ -12,6 +13,36 @@ var player2TotalLoses = 0;
 var playerDraws = 0;
 var player1Guess = "";
 var player2Guess = "";
+
+var config = {
+				    apiKey: "AIzaSyC2Fnkvac447UrXn-1kA17rY010H-qrgMI",
+				    authDomain: "rpsmultiplayer-9f928.firebaseapp.com",
+				    databaseURL: "https://rpsmultiplayer-9f928.firebaseio.com",
+				    storageBucket: "rpsmultiplayer-9f928.appspot.com",
+				  };
+				  firebase.initializeApp(config)
+
+				var database = firebase.database();
+
+database.ref().on("value", function(snapshot) {
+	if (snapshot.child("player1Name").val() == null) {
+		localStorage.setItem('playerId', "player 1");
+
+	}
+
+	else if (snapshot.child("player2Name").val() == null && snapshot.child("player1Name").exists()) {
+		localStorage.setItem('playerId', "player 2");
+	}
+
+	// If Firebase has a highPrice and highBidder stored (first case)
+	else if (snapshot.child("player1Name").exists() && snapshot.child("player2Name").exists()) {
+
+	}
+
+	else {
+
+	}
+
 
 	getUserNames();
 //To control for only two users at a time, I'm requesting players to 
@@ -46,6 +77,8 @@ var player2Guess = "";
 					$('#nameInput').val("");
 					console.log(player1Name);
 					players++;
+					database.child('player1Name').set(player1Name);
+	    			database.child('players').set(players);
 				} else if (player2Name == ""){
 					console.log("player2Name value check is working");
 					player2Name = nameTest;
@@ -53,6 +86,8 @@ var player2Guess = "";
 					console.log(player2Name);
 					players++;
 					console.log(players);
+					database.child('player2Name').set(player2Name);
+	    			database.child('players').set(players);
 					$('#startPrompt').text('CLICK START TO BEGIN')
 					$('#nameInput').addClass('hide');
 					$('#errorMsg').addClass('hide');
@@ -84,16 +119,6 @@ var player2Guess = "";
 			$('#liveGameDiv').addClass('show');
 
 			function gamePlay() {
-
-				var config = {
-				    apiKey: "AIzaSyC2Fnkvac447UrXn-1kA17rY010H-qrgMI",
-				    authDomain: "rpsmultiplayer-9f928.firebaseapp.com",
-				    databaseURL: "https://rpsmultiplayer-9f928.firebaseio.com",
-				    storageBucket: "rpsmultiplayer-9f928.appspot.com",
-				  };
-				  firebase.initializeApp(config)
-
-				var database = firebase.database();
 
 			// Captures Key Clicks
 				document.onkeyup = function(event) {
@@ -162,6 +187,28 @@ var player2Guess = "";
 		playerDraws = 0;
 		player1Guess = "";
 		player2Guess = "";
+		//Reset values in FireBase
+		database.child('players').remove();
+	    database.child('player1Name').remove();
+	    database.child('player2Name').remove();
+	    database.child('player1TotalWins').remove();
+	    database.child('player2TotalWins').remove();
+	    database.child('player1TotalLoses').remove();
+	    database.child('player2TotalLoses').remove();
+	    database.child('playerDraws').remove();
+	    database.child('player1Guess').remove();
+	    database.child('player2Guess').remove();
 	}
 
+	$('#chatSubmit').click(function() {
+		var latestChat = $('#chatInput').val();
+
+		var postsRef = ref.child("posts");
+		var newPostRef = postsRef.push();
+		    newPostRef.set({
+		    	author: "'"++"'",
+		    	title: "'"+latestChat+"'"
+		  });
+	})
+}//End firebase snapshot evaluation
 });

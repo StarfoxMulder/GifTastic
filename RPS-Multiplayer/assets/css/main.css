@@ -77,7 +77,7 @@ main {
 }
 
 #currentRoundRow {
-	margin-top: 7%;
+	margin-top: 10%;
 	text-align: center;
 	letter-spacing: 3px;
 }
@@ -93,6 +93,24 @@ main {
 }
 
 #agStats {
-	margin-top: 7%;
+	margin-top: 10%;
 	text-align: center;
+}
+
+#quitButton {
+	margin-top: 15%;
+	margin-bottom: 15%;
+}
+
+#chatRow {
+	margin-top: 10%;
+	background-color: #1F4507;
+}
+
+.player1Chat {
+	color: #304B1E;
+}
+
+.player2Chat {
+	color: #5DCB15;
 }
