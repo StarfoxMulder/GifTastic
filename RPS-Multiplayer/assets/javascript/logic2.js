@@ -13,6 +13,7 @@ var player2TotalLoses = 0;
 var playerDraws = 0;
 var player1Guess = "";
 var player2Guess = "";
+var userStorage = localStorage;
 
 var config = {
 				    apiKey: "AIzaSyC2Fnkvac447UrXn-1kA17rY010H-qrgMI",
@@ -25,23 +26,22 @@ var config = {
 				var database = firebase.database();
 
 database.ref().on("value", function(snapshot) {
+	console.log(snapshot.val());
+
 	if (snapshot.child("player1Name").val() == null) {
 		localStorage.setItem('playerId', "player 1");
 
-	}
-
-	else if (snapshot.child("player2Name").val() == null && snapshot.child("player1Name").exists()) {
+	}   else if (snapshot.child("player2Name").val() == null && snapshot.child("player1Name").exists()) {
 		localStorage.setItem('playerId', "player 2");
 	}
 
-	// If Firebase has a highPrice and highBidder stored (first case)
-	else if (snapshot.child("player1Name").exists() && snapshot.child("player2Name").exists()) {
+	ref.orderByChild("posts").on("child_added", function(snapshot) {
+		for(var i = 0; i < snapshot.child("posts").length; i++) {
+			newPostDiv = "<div class='row><div class='col-xs-3'>"+snapshot.child("posts")[i].author+"</div><div class='col-xs-9'>"+snapshot.child("posts")[i].content+"</div></div>";
+			$('#chatTargetDiv').prepend(newPostDiv);
+		}
+	})
 
-	}
-
-	else {
-
-	}
 
 
 	getUserNames();
@@ -124,50 +124,54 @@ database.ref().on("value", function(snapshot) {
 				document.onkeyup = function(event) {
 
 					// Determines which exact key was selected. Make it lowercase
-					var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+					if (localStorage.playerId == "player 1") {
+						var player1Guess = String.fromCharCode(event.keyCode).toLowerCase();
+					} else if (localStorage.playerId == "player 2") {
+						var player2Guess = String.fromCharCode(event.keyCode).toLowerCase();
+					}
 
-					// Create code to randomly choose one of the three options (Computer) 
-					var computerGuess = options[Math.floor(Math.random()*options.length)];
-
-						if (userGuess == 'r' && computerGuess == 'r') {
-						    draws++;
+						if (player1Guess == 'r' && player2Guess == 'r') {
+						    playerDraws++;
 						}
-						else if (userGuess == 'r' && computerGuess == 'p') {
-						    compTotal += 1;
+						else if (player1Guess == 'r' && player2Guess == 'p') {
+						    player2TotalWins += 1;
+						    player1TotalLoses += 1;
 						}
-						else if (userGuess == 'r' && computerGuess == 's') {
-						    userTotal += 1;
-						}
-
-						else if (userGuess == 'p' && computerGuess == 'p') {
-						    draws += 1;
-						}
-						else if (userGuess == 'p' && computerGuess == 's') {
-						    compTotal += 1;
-						}
-						else if (userGuess == 'p' && computerGuess == 'r') {
-						    userTotal += 1;
+						else if (player1Guess == 'r' && player2Guess == 's') {
+						    player1TotalWins += 1;
+						    player2TotalLoses += 1;
 						}
 
-						else if (userGuess == 's' && computerGuess == 's') {
-						    draws += 1;
+						else if (player1Guess == 'p' && player2Guess == 'p') {
+						    playerDraws += 1;
 						}
-						else if (userGuess == 's' && computerGuess == 'p') {
-						    compTotal += 1;
+						else if (player1Guess == 'p' && player2Guess == 's') {
+						    player2TotalWins += 1;
+						    player1TotalLoses += 1;
 						}
-						else if (userGuess == 's' && computerGuess == 'r') {
-						    userTotal += 1;
+						else if (player1Guess == 'p' && player2Guess == 'r') {
+						    player1TotalWins += 1;
+						    player2TotalLoses += 1;
 						}
 
-					var html = "<p>Press r, p, or s to start playing</p>" +
-						"<p>Wins: "+userTotal+"</p>"
-						+
-						"<p>Loses: "+compTotal+"</p>"
-						+
-						"<p>Draws: "+draws+"</p>";
+						else if (player1Guess == 's' && player2Guess == 's') {
+						    playerDraws += 1;
+						}
+						else if (player1Guess == 's' && player2Guess == 'p') {
+						    player2TotalWins += 1;
+						    player1TotalLoses += 1;
+						}
+						else if (player1Guess == 's' && player2Guess == 'r') {
+						    player1TotalWins += 1;
+						    player2TotalLoses += 1;
+						}
 
-					// Placing the html 
-					document.querySelector('#game').innerHTML = html;
+					$('#player1TotalWins').html(player1TotalWins);
+					$('#player2TotalWins').html(player2TotalWins);
+					$('#player1TotalLoses').html(player1TotalLoses);
+					$('#player2TotalLoses').html(player2TotalLoses);
+					$('.playerDraws').html(playerDraws);
+
 
 				}; //End keystroke event listener
 			}; //End gamePlay function
@@ -198,17 +202,25 @@ database.ref().on("value", function(snapshot) {
 	    database.child('playerDraws').remove();
 	    database.child('player1Guess').remove();
 	    database.child('player2Guess').remove();
-	}
+	})
 
 	$('#chatSubmit').click(function() {
+		posterId = localStorage.getItem('playerId');
+		if (posterId == player1Name) {
+			posterName = player1Name;
+
+		} else if (posterId == player2Name) {
+			posterName = player2Name;
+		}
+
 		var latestChat = $('#chatInput').val();
 
 		var postsRef = ref.child("posts");
 		var newPostRef = postsRef.push();
 		    newPostRef.set({
-		    	author: "'"++"'",
-		    	title: "'"+latestChat+"'"
+		    	author: "'"+posterName+"'",
+		    	content: "'"+latestChat+"'"
 		  });
 	})
-}//End firebase snapshot evaluation
+})//End firebase snapshot evaluation
 });
