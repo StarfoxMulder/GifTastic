@@ -62,7 +62,7 @@ input {
 
 #instructions {
 	font-family: 'Days One', sans-serif;
-	margin-top: 15%;
+	margin-top: 7%;
 	text-align: center;
 }
 
@@ -77,34 +77,47 @@ main {
 }
 
 #currentRoundRow {
-	margin-top: 10%;
+	margin-top: 18%;
 	text-align: center;
 	letter-spacing: 3px;
 }
 
 #opOption {
 	text-align: center;
-	font-size: 250%;
+	font-size: 650%;
+	color: #4BC7FA;
 }
 
 #yourOption {
 	text-align: center;
-	font-size: 250%;
+	font-size: 650%;
+	color: #4BC7FA;
 }
 
 #agStats {
-	margin-top: 10%;
+	margin-top: 7%;
 	text-align: center;
 }
 
 #quitButton {
-	margin-top: 15%;
-	margin-bottom: 15%;
+	margin-top: 10%;
+	margin-bottom: 10%;
 }
 
 #chatRow {
 	margin-top: 10%;
 	background-color: #1F4507;
+	height: 15%;
+}
+
+#chatInput {
+	width: 60%;
+	margin-bottom: 15%;
+	margin-left: 15%;
+}
+
+#chatSubmit {
+	margin-left: 7%;
 }
 
 .player1Chat {

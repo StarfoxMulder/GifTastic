@@ -98,51 +98,7 @@ var player2Guess = "";
 			// Captures Key Clicks
 				document.onkeyup = function(event) {
 
-					// Determines which exact key was selected. Make it lowercase
-					var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-					// Create code to randomly choose one of the three options (Computer) 
-					var computerGuess = options[Math.floor(Math.random()*options.length)];
-
-						if (userGuess == 'r' && computerGuess == 'r') {
-						    draws++;
-						}
-						else if (userGuess == 'r' && computerGuess == 'p') {
-						    compTotal += 1;
-						}
-						else if (userGuess == 'r' && computerGuess == 's') {
-						    userTotal += 1;
-						}
-
-						else if (userGuess == 'p' && computerGuess == 'p') {
-						    draws += 1;
-						}
-						else if (userGuess == 'p' && computerGuess == 's') {
-						    compTotal += 1;
-						}
-						else if (userGuess == 'p' && computerGuess == 'r') {
-						    userTotal += 1;
-						}
-
-						else if (userGuess == 's' && computerGuess == 's') {
-						    draws += 1;
-						}
-						else if (userGuess == 's' && computerGuess == 'p') {
-						    compTotal += 1;
-						}
-						else if (userGuess == 's' && computerGuess == 'r') {
-						    userTotal += 1;
-						}
-
-					var html = "<p>Press r, p, or s to start playing</p>" +
-						"<p>Wins: "+userTotal+"</p>"
-						+
-						"<p>Loses: "+compTotal+"</p>"
-						+
-						"<p>Draws: "+draws+"</p>";
-
-					// Placing the html 
-					document.querySelector('#game').innerHTML = html;
+					
 
 				}; //End keystroke event listener
 			}; //End gamePlay function
@@ -162,6 +118,6 @@ var player2Guess = "";
 		playerDraws = 0;
 		player1Guess = "";
 		player2Guess = "";
-	}
+	})
 
 });

@@ -24,7 +24,7 @@ $(document).ready(function() {
 			$('#gifContainer').empty();
 	        var cryptid = $(this).data('cryptid');
 	        console.log(cryptid);
-	        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + cryptid + "&api_key=dc6zaTOxFJmzC&limit=10";
+	        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cryptid + "&api_key=dc6zaTOxFJmzC&limit=10";
 
 	        $.ajax({
 	                url: queryURL,
@@ -69,7 +69,7 @@ $(document).ready(function() {
 	    console.log(topics);
 	};
 
-	
+
 	$('body').on('click', 'img', function(){
 		var state = $(this).attr('data-state');
 		console.log(state);
